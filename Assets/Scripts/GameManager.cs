@@ -19,7 +19,16 @@ public class GameManager : MonoBehaviour
     }
     public void InitializeBall() 
     { 
-        float angle = Random.Range(0f, 360f) * Mathf.Deg2Rad;
+        float angle = Random.Range(0f, 30f);
+        float r = Random.Range(0f, 1f);
+        if (r < 0.25f)
+            angle = 180f - angle;
+        else if (r < 0.5f)
+            angle += 180f;
+        else if (r < 0.75f)
+            angle = 360f - angle;
+        angle *= Mathf.Deg2Rad;
+
         Vector2 dir = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
         ball.velocity = dir.normalized * 10f;
 
