@@ -616,6 +616,7 @@ GameObject:
   - component: {fileID: 1203534686}
   - component: {fileID: 1203534685}
   - component: {fileID: 1203534687}
+  - component: {fileID: 1203534688}
   m_Layer: 0
   m_Name: LeftPaddle
   m_TagString: Untagged
@@ -735,6 +736,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1203534688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1203534684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eecc7cfcc0e1c8741aafce51700a3a31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLeft: 1
 --- !u!1 &1325404227
 GameObject:
   m_ObjectHideFlags: 0
@@ -830,6 +844,7 @@ GameObject:
   - component: {fileID: 1381678819}
   - component: {fileID: 1381678818}
   - component: {fileID: 1381678820}
+  - component: {fileID: 1381678821}
   m_Layer: 0
   m_Name: RightPaddle
   m_TagString: Untagged
@@ -949,6 +964,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1381678821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1381678817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eecc7cfcc0e1c8741aafce51700a3a31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLeft: 0
 --- !u!1 &1468171555
 GameObject:
   m_ObjectHideFlags: 0
