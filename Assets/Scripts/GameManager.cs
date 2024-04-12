@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public Rigidbody2D ball;
     public Text scoreLeftText;
     public Text scoreRightText;
+    public Text countdownText;
 
     private int _scoreLeft;
     private int _scoreRight;
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour
         _scoreRight = 0;
 
         InitializeBall();
+        StartCoroutine(_CountingDown());
     }
     public void InitializeBall()
     {
@@ -53,7 +55,7 @@ public class GameManager : MonoBehaviour
             scoreLeftText.text = _scoreLeft.ToString();
 
         }
-        else 
+        else
         {
             _scoreRight++;
             scoreRightText.text = _scoreRight.ToString();
@@ -63,5 +65,25 @@ public class GameManager : MonoBehaviour
 
     }
 
+    private IEnumerator _CountingDown()
+    {
+        // freee everything
+        Time.timeScale = 0;
 
+        //count down
+        for (int c = 3; c > 0; c--)
+        {
+            countdownText.text = c.ToString();
+            yield return new WaitForSecondsRealtime(1);
+        }
+
+        countdownText.gameObject.SetActive(false);
+
+        // reset the time scale 
+        Time.timeScale = 1;
+    }
 }
+
+
+
+
