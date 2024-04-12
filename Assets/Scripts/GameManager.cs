@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public Rigidbody2D ball;
     public Text scoreLeftText;
     public Text scoreRightText;
+    public GameObject countdownWrapper;
     public Text countdownText;
 
     private int _scoreLeft;
@@ -77,7 +78,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSecondsRealtime(1);
         }
 
-        countdownText.gameObject.SetActive(false);
+        countdownWrapper.SetActive(false);
 
         // reset the time scale 
         Time.timeScale = 1;
