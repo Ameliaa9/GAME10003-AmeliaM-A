@@ -1,11 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-
     public static GameManager instance;
 
     public Rigidbody2D ball;
@@ -16,6 +14,7 @@ public class GameManager : MonoBehaviour
 
     private int _scoreLeft;
     private int _scoreRight;
+    private bool gameOver = false; 
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +28,8 @@ public class GameManager : MonoBehaviour
         InitializeBall();
         StartCoroutine(_CountingDown());
     }
-    public void InitializeBall()
+
+    public void InitializeBall() //random ball movement
     {
         float angle = Random.Range(0f, 30f);
         float r = Random.Range(0f, 1f);
@@ -45,30 +45,60 @@ public class GameManager : MonoBehaviour
         ball.velocity = dir.normalized * 10f;
 
         ball.transform.position = Vector3.zero;
-
     }
 
     public void IncreaseScore(bool left)
     {
+        if (gameOver) // If game over return
+            return;
+
         if (left)
         {
             _scoreLeft++;
             scoreLeftText.text = _scoreLeft.ToString();
-
         }
         else
         {
             _scoreRight++;
             scoreRightText.text = _scoreRight.ToString();
-
         }
 
+        if (_scoreLeft >= 10 || _scoreRight >= 10)
+        {
+            GameOver();
+        }
+    }
 
+    void GameOver()
+    {
+        gameOver = true;
+        Time.timeScale = 0; // Freeze the game
+    }
+
+    void Update()
+    {
+        if (gameOver && Input.GetKeyDown(KeyCode.Space)) // Restart the game if user presses spacebar pressed
+        {
+            RestartGame();
+        }
+    }
+
+    void RestartGame()
+    {
+        // Reset scores and game over flag
+        _scoreLeft = 0;
+        _scoreRight = 0;
+        scoreLeftText.text = "0";
+        scoreRightText.text = "0";
+        gameOver = false;
+        Time.timeScale = 1; // Unfreeze the game
+        InitializeBall();
+        StartCoroutine(_CountingDown());
     }
 
     private IEnumerator _CountingDown()
     {
-        // freee everything
+        // freeze everything
         Time.timeScale = 0;
 
         //count down
@@ -84,7 +114,3 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
     }
 }
-
-
-
-
