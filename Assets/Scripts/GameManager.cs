@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
 
     private int _scoreLeft;
     private int _scoreRight;
-    private bool gameOver = false; 
+    private bool gameOver = false;
 
     // Start is called before the first frame update
     void Start()
@@ -77,24 +77,28 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (gameOver && Input.GetKeyDown(KeyCode.Space)) // Restart the game if user presses spacebar pressed
+        // Check for spacebar input only if the game is over
+        if (gameOver && Input.GetKeyDown(KeyCode.Space))
         {
-            RestartGame();
+            ResetGame();
         }
     }
 
-    void RestartGame()
+
+    void ResetGame()
     {
-        // Reset scores and game over flag
+        // Reset pong variables etc.
         _scoreLeft = 0;
         _scoreRight = 0;
         scoreLeftText.text = "0";
         scoreRightText.text = "0";
         gameOver = false;
-        Time.timeScale = 1; // Unfreeze the game
-        InitializeBall();
-        StartCoroutine(_CountingDown());
+        Time.timeScale = 1; 
+        InitializeBall(); // Reset the ball's position and velocity
+        StartCoroutine(_CountingDown()); 
     }
+
+
 
     private IEnumerator _CountingDown()
     {
