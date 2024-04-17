@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
         if (instance == null)
             instance = this;
 
-        _scoreLeft = 0;
+        _scoreLeft = 0; //scores at the beginning of the game
         _scoreRight = 0;
 
         InitializeBall();
@@ -87,10 +87,10 @@ public class GameManager : MonoBehaviour
 
     void ResetGame()
     {
-        // Reset pong variables etc.
+        // Reseting everything 
         _scoreLeft = 0;
         _scoreRight = 0;
-        scoreLeftText.text = "0";
+        scoreLeftText.text = "0"; 
         scoreRightText.text = "0";
         gameOver = false;
         Time.timeScale = 1; 
